@@ -2,9 +2,11 @@ const fs = require("fs");
 const chalk = require("chalk");
 
 const addNote = (title, body) => {
+  //load the notes
   const notes = loadNotes();
+  //duplication check
   const duplicateNote = notes.find(note => note.title === title);
-
+  //pushing and saving
   if (!duplicateNote) {
     notes.push({
       title: title,
@@ -19,6 +21,7 @@ const addNote = (title, body) => {
 
 const removeNote = title => {
   const notes = loadNotes();
+  //use filter to keep the wanted note
   const notesToKeep = notes.filter(note => note.title !== title);
 
   if (notes.length > notesToKeep.length) {
@@ -35,7 +38,7 @@ const listNotes = () => {
   console.log(chalk.inverse("Your notes"));
 
   notes.forEach(note => {
-    console.log(note.title);
+    console.log(note.title, note.body);
   });
 };
 
@@ -50,7 +53,7 @@ const readNote = title => {
     console.log(chalk.red.inverse("Note not found!"));
   }
 };
-
+//saving
 const saveNotes = notes => {
   const dataJSON = JSON.stringify(notes);
   fs.writeFileSync("notes.json", dataJSON);
