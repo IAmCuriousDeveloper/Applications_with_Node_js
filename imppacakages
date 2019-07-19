@@ -1,0 +1,3 @@
+chalk -> its useful for colorful commandline messages
+nodemon -> like hot module replacement
+yargs -> this module is widely used to work with the command line arguments 

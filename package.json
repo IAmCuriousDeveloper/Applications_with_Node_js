@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/PRASHANTPR7/Applications_with_Node_js/issues"
   },
-  "homepage": "https://github.com/PRASHANTPR7/Applications_with_Node_js#readme"
+  "homepage": "https://github.com/PRASHANTPR7/Applications_with_Node_js#readme",
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "nodemon": "^1.19.1",
+    "yargs": "^13.3.0"
+  }
 }
