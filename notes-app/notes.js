@@ -72,3 +72,5 @@ module.exports = {
   listNotes: listNotes,
   readNote: readNote
 };
+
+//just exported the needed four
