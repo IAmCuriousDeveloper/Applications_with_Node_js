@@ -1,0 +1,3 @@
+while debugging use node --inspect <yourscript.js> to inspect the node script in chrome
+chrome://inspect 
+use debugger statement to stop the script to specific line
