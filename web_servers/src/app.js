@@ -1,22 +1,69 @@
 const express = require("express");
 const app = express();
+const hbs = require("hbs");
+const path = require("path");
 
-app.get("/", (req, res) => {
-  res.send("hey this is home page");
+//defining path for public views and partials
+const publicDirectoryPath = path.join(__dirname, "../public");
+const viewPath = path.join(__dirname, "../templates/views");
+const partialspath = path.join(__dirname, "../templates/partials");
+
+//setting up handlebars engine and views loaction
+app.set("view engine", "hbs");
+app.set("views", viewPath);
+hbs.registerPartials(partialspath);
+//hbs.registerPartials is used to register a partials used inside views
+
+//serving up static files
+app.use(express.static(publicDirectoryPath));
+
+app.get("", (req, res) => {
+  res.render("index", {
+    title: "Weather forecast",
+    name: "Prashant Rawal"
+  });
 });
 
 app.get("/about", (req, res) => {
-  res.send("hey this is about page");
+  res.render("about", {
+    title: "About me",
+    name: "Prashant Rawal"
+  });
 });
 
-app.get("/title", (req, res) => {
-  res.send("hey this is title page");
+app.get("/help", (req, res) => {
+  res.render("help", {
+    helpText: "this is some helpful text",
+    name: "Prashant Rawal",
+    title: "help"
+  });
 });
 
 app.get("/weather", (req, res) => {
-  res.send("hey this is weather page");
+  res.send({
+    forecast: "its little raining",
+    location: "korba"
+  });
 });
 
-app.listen(3000, () => {
-  console.log("we are listening on port 3000");
+app.get("/help/*", (req, res) => {
+  res.render("404", {
+    title: "404",
+    name: "Prashant Rawal",
+    errormessage: "help article not found"
+  });
 });
+
+app.get("*", (req, res) => {
+  res.render("404", {
+    title: "404",
+    name: "Prashant Rawal",
+    errormessage: "Page not found"
+  });
+});
+
+app.listen(3030, () => {
+  console.log("we are listening on port 3030");
+});
+
+//npm config get prefix
